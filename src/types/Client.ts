@@ -8,7 +8,7 @@ export class Client {
       streaming: false,
       apiKey: "",
     } as ClientOptions;
-    // @TODO merge options
+    //@TODO: merge options
     this.options = options;
   }
   parseJSONFile = async (fileName: string) => {
@@ -26,10 +26,10 @@ export class Client {
     const { streaming, apiKey } = this.options;
     const apiKeyExists = true;
     if (apiKey === "" || !apiKeyExists) {
-      // @TODO handle bad api key
+      // @TODO: handle bad api key
     }
     if (streaming) {
-      // @TODO handle streaming cmp
+      // @TODO: handle streaming cmp
     } else {
       const result = _.isEqual(oldObj, newObj);
       console.log(result);
