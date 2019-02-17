@@ -1,12 +1,13 @@
 import fs from "mz/fs";
 import _ from "underscore";
+import axios from "axios";
 
 export class Client {
   options: ClientOptions;
   constructor(options: ClientOptions) {
     const defaultOptions = {
       streaming: false,
-      apiKey: "",
+      apiKey: ""
     } as ClientOptions;
     //@TODO: merge options
     this.options = options;
@@ -22,18 +23,25 @@ export class Client {
       return null;
     }
   };
-  compareObjects(oldObj: object, newObj: object) {
+  compareObjects = async (oldObj: object, newObj: object) => {
     const { streaming, apiKey } = this.options;
-    const apiKeyExists = true;
-    if (apiKey === "" || !apiKeyExists) {
-      // @TODO: handle bad api key
-    }
     if (streaming) {
       // @TODO: handle streaming cmp
     } else {
       const result = _.isEqual(oldObj, newObj);
-      console.log(result);
-      console.log("persisting result!");
+      const error = !result;
+      console.log(`Publishing result with error status: ${error}`);
+      const res = await axios.post(
+        "https://insightful-server.herokuapp.com/results/",
+        {
+          fields: {
+            api_key: "VMVK61C-1VSM6QY-HZV19R6-AXE5657",
+            error,
+            message: "amount",
+            project: "teamdealeronline"
+          }
+        }
+      );
     }
   }
   compareFile() {
