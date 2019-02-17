@@ -30,7 +30,7 @@ export class Client {
     } else {
       const result = _.isEqual(oldObj, newObj);
       const error = !result;
-      console.log(`Publishing result with error status: ${error}`);
+      console.log(`Publishing result with error: ${error}`);
       const res = await axios.post(
         "https://insightful-server.herokuapp.com/results/",
         {
