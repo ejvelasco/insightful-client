@@ -4,7 +4,8 @@ import { Client, ClientOptions } from "./types/Client";
 class InsightfulClient extends Client {}
 
 const options = {
-  streaming: false
+  streaming: false, 
+  apiKey: "VMVK61C-1VSM6QY-HZV19R6-AXE5657"
 } as ClientOptions;
 const client = new InsightfulClient(options);
 
